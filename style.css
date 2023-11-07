@@ -1,0 +1,250 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  height: 100vh;
+  color: #333;
+  background: rgb(56, 79, 50);
+  background: linear-gradient(
+    90deg,
+    rgba(56, 79, 50, 1) 15%,
+    rgba(100, 170, 132, 1) 50%,
+    rgba(102, 169, 184, 1) 85%
+  );
+  align-items: center;
+  justify-content: center;
+}
+
+/* LAYOUT */
+main {
+  position: relative;
+  width: 70vw;
+  height: 70vh;
+  margin: 0 auto; /* Căn giữa chiều ngang */
+  align-items: center; /* Căn giữa chiều dọc */
+  justify-content: center; /* Căn giữa chiều ngang */
+  text-align: center;
+  display: flex;
+}
+header {
+  font-size: 2vw;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Để căn giữa dọc */
+  height: 10rem; /* Thiết lập chiều cao của header (tuỳ chỉnh) */
+}
+
+.music {
+  position: relative;
+  min-height: 650px;
+  max-height: 1200px;
+  width: 40vw;
+  height: 60vh;
+  background-color: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(200px);
+  filter: blur();
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.25);
+  border-radius: 9px;
+  overflow: hidden;
+  box-sizing: border-box;
+  align-items: center; /* Căn giữa chiều dọc */
+  justify-content: center; /* Căn giữa chiều ngang */
+  display: flex;
+}
+
+.display-container {
+  margin: 20px 30px 20px 30px;
+  width: 90%;
+  height: 90%;
+  max-height: 585px;
+  display: block;
+}
+
+.image-container {
+  position: relative;
+}
+
+.cover-photo {
+  width: 46%;
+  height: 46%;
+  border: 2.5rem solid rgba(0, 0, 0, 0.183);
+  border-radius: 50%;
+  box-shadow: 0px 10px 60px rgba(125, 46, 46, 0.463);
+  display: inline-block;
+  margin: 2% 10% 2% 10%;
+  position: relative;
+}
+
+.image-container::after {
+  content: "";
+  background-color: rgba(205, 231, 221, 0.981);
+  height: 6vh;
+  width: 6vh;
+  position: absolute;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.animation {
+  -webkit-animation: spin 7s linear infinite;
+  animation: spin 7s linear infinite;
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.display-container h1 {
+  font-size: 25px;
+}
+.display-container a {
+  font-size: 35px;
+}
+.infor-song {
+  margin: 2% 2% 4.5%;
+}
+
+.display-container p {
+  font-size: 15px;
+  margin-top: 1%;
+}
+#song {
+  display: none;
+}
+
+#seek-bar {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 69%;
+  height: 0.5rem;
+  color: aqua;
+  background-color: black;
+  opacity: 70%;
+  border-radius: 34px;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.timer {
+  margin-top: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0 61%;
+}
+
+.playback-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.playback-control ion-icon {
+  width: 30px;
+  height: 30px;
+  margin: 10px 15px 0;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 50%;
+  color: rgba(0, 0, 0, 0.63);
+  /* box-shadow: 0 10px 20px rgba(255, 26, 26, 0.22); */
+  cursor: pointer;
+}
+.music-list {
+  width: 25vw;
+  margin-left: 1.5vw;
+}
+.list-container {
+  display: inline;
+  width: 95%;
+  height: 95%;
+}
+.list {
+  font-size: 20px;
+  margin-bottom: 2%;
+  margin-top: 5%;
+}
+#playlist {
+  font-size: 2vh;
+  margin-bottom: 40px;
+  list-style-type: none;
+  overflow: auto;
+  height: 90%;
+}
+#playlist::-webkit-scrollbar {
+  display: none;
+}
+
+#playlist span {
+  margin-bottom: 15px;
+}
+
+#playlist .song-item {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 90%;
+  background-color: rgba(205, 231, 221, 0.896);
+  box-shadow: 0.7rem 0.7rem rgba(0, 0, 0, 0.074);
+  margin: 5%;
+  padding: 3%;
+  border-radius: 34px;
+  text-align: left;
+  border-radius: 34px;
+}
+.highlight-song {
+  background-color: black !important;
+  color: aliceblue;
+  padding: 6% !important;
+}
+h2 {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  width: 160px;
+  text-align: center;
+  margin: auto;
+  white-space: nowrap;
+  padding-bottom: 13px;
+}
+.title-header h2 {
+  position: relative;
+}
+.title-header h2:before {
+  background-color: #c50000;
+  content: "";
+  display: block;
+  height: 3px;
+  width: 75px;
+  margin-bottom: 5px;
+}
+.title-header h2:after {
+  background-color: #c50000;
+  content: "";
+  display: block;
+  position: absolute;
+  left: 200px;
+  height: 3px;
+  width: 75px;
+  margin-bottom: 0.25em;
+}

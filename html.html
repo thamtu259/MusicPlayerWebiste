@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+    <title>Music Player</title>
+  </head>
+  <body>
+    <header>
+      <div class="title-header"><h2>Web Media Player</h2></div>
+    </header>
+    <main>
+      <section class="music">
+        <div class="display-container">
+          <div class="image-container">
+            <img src="ngot.jpg" class="cover-photo" id="image" alt="Error" />
+          </div>
+          <div class="infor-song">
+            <h1 id="song-name">Song name</h1>
+            <p id="artist-name">Artis</p>
+          </div>
+          <audio controls id="song">
+            <source
+              src="music/LAN-CUOI-di-ben-em-xot-xa-nguoi-oi-Ngot.mp3"
+              type="audio/mpeg"
+            />
+          </audio>
+          <div class="progress-bar">
+            <input type="range" id="seek-bar" value="0" />
+            <div class="timer">
+              <div class="duration">0:00</div>
+              <div class="remaining">4:00</div>
+            </div>
+          </div>
+
+          <div class="playback-control">
+            <ion-icon
+              name="shuffle-outline"
+              class="random-btn"
+              style="width: 22px; height: 22px"
+            ></ion-icon>
+            <ion-icon name="play-skip-back" class="back-btn"></ion-icon>
+            <div class="play-pause">
+              <ion-icon
+                name="play-circle"
+                id="play-pause"
+                style="width: 50px; height: 50px"
+              ></ion-icon>
+            </div>
+            <ion-icon name="play-skip-forward" class="next-btn"></ion-icon>
+            <ion-icon
+              name="repeat-outline"
+              class="repeat-btn"
+              style="width: 22px; height: 22px"
+            ></ion-icon>
+          </div>
+        </div>
+      </section>
+
+      <section class="music music-list">
+        <div class="list-container">
+          <h3 class="list">Danh sách bài hát</h3>
+          <div id="playlist"></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "jsmediatags": "^3.9.7",
+    "music-metadata": "^7.13.5"
+  },
+  "devDependencies": {
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
