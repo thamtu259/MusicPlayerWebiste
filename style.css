@@ -35,6 +35,7 @@ main {
   justify-content: center; /* Căn giữa chiều ngang */
   text-align: center;
   display: flex;
+  flex-wrap: wrap;
 }
 header {
   font-size: 2vw;
@@ -49,8 +50,9 @@ header {
 .music {
   position: relative;
   min-height: 650px;
-  max-height: 1200px;
-  width: 40vw;
+  max-height: 1100px;
+  min-width: 500px;
+  width: 50%;
   height: 60vh;
   background-color: rgba(255, 255, 255, 0.35);
   backdrop-filter: blur(200px);
@@ -62,18 +64,31 @@ header {
   align-items: center; /* Căn giữa chiều dọc */
   justify-content: center; /* Căn giữa chiều ngang */
   display: flex;
+  margin-left: 0.7vw;
+  margin-bottom: 1vw;
 }
 
 .display-container {
   margin: 20px 30px 20px 30px;
   width: 90%;
   height: 90%;
-  max-height: 585px;
+  max-height: 900px;
   display: block;
 }
 
 .image-container {
   position: relative;
+}
+.image-container::after {
+  content: "";
+  height: 5.5vh;
+  width: 5.5vh;
+  background-color: rgba(205, 231, 221, 0.981);
+  position: absolute;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .cover-photo {
@@ -85,18 +100,6 @@ header {
   display: inline-block;
   margin: 2% 10% 2% 10%;
   position: relative;
-}
-
-.image-container::after {
-  content: "";
-  background-color: rgba(205, 231, 221, 0.981);
-  height: 6vh;
-  width: 6vh;
-  position: absolute;
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .animation {
@@ -171,9 +174,27 @@ header {
   /* box-shadow: 0 10px 20px rgba(255, 26, 26, 0.22); */
   cursor: pointer;
 }
+#random-btn::after,
+#repeat-btn::after {
+  content: "";
+  background-color: green;
+  height: 15%;
+  width: 15%;
+  position: absolute;
+  border-radius: 40px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+}
+#wave {
+  width: 80%;
+  height: 200px;
+  margin: 20px;
+}
+
 .music-list {
   width: 25vw;
-  margin-left: 1.5vw;
 }
 .list-container {
   display: inline;
@@ -181,7 +202,7 @@ header {
   height: 95%;
 }
 .list {
-  font-size: 20px;
+  font-size: 3vh;
   margin-bottom: 2%;
   margin-top: 5%;
 }
@@ -195,22 +216,26 @@ header {
 #playlist::-webkit-scrollbar {
   display: none;
 }
-
-#playlist span {
-  margin-bottom: 15px;
-}
-
 #playlist .song-item {
   font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
   font-size: 90%;
   background-color: rgba(205, 231, 221, 0.896);
   box-shadow: 0.7rem 0.7rem rgba(0, 0, 0, 0.074);
   margin: 5%;
   padding: 3%;
-  border-radius: 34px;
   text-align: left;
   border-radius: 34px;
+  display: flex;
+  justify-content: space-between;
 }
+
+.song-duration {
+  font-style: italic;
+  font-weight: lighter;
+  font-size: 80%;
+}
+
 .highlight-song {
   background-color: black !important;
   color: aliceblue;
@@ -226,6 +251,10 @@ h2 {
   margin: auto;
   white-space: nowrap;
   padding-bottom: 13px;
+}
+.title-header {
+  max-width: 200px;
+  min-width: 200px;
 }
 .title-header h2 {
   position: relative;

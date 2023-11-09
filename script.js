@@ -1,4 +1,5 @@
 "use strict";
+
 const song = document.getElementById("song");
 const coverImg = document.querySelector(".cover-photo");
 const songName = document.getElementById("song-name");
@@ -6,13 +7,15 @@ const artistName = document.getElementById("artist-name");
 const playButton = document.querySelector(".play-pause");
 const nextButton = document.querySelector(".next-btn");
 const backButton = document.querySelector(".back-btn");
+const shuffleButton = document.getElementById("random-btn");
+const repeatButton = document.getElementById("repeat-btn");
 const progressBar = document.getElementById("seek-bar");
 const duration = document.querySelector(".duration");
 const remaining = document.querySelector(".remaining");
 const playlist = document.getElementById("playlist");
 const clickSong = document.querySelectorAll(".song-item");
+// const = document.getElementById("canvas-custom");
 
-console.log(playButton, song);
 let isPlaying = false;
 let order = 2;
 let isNext = true;
@@ -63,7 +66,6 @@ const fetchSongData = (url) => {
               src: `./music/${url}`,
               imgSrc: `data:${data.format};base64,${window.btoa(base64String)}`,
             };
-
             list_song.push(song);
             resolve();
           },
@@ -83,6 +85,7 @@ Promise.all(fetchPromises)
     console.log("Tất cả dữ liệu đã được lấy và xử lý");
     console.log(list_song);
 
+    //Display song's data (image, name,...)
     function playSong(index) {
       song.setAttribute("src", list_song[index].src);
       coverImg.src = list_song[index].imgSrc;
@@ -114,7 +117,11 @@ Promise.all(fetchPromises)
 
     function changeSong(input) {
       songIsPlaying("pre_next");
-      if (input === true) {
+      if (isRepeated === true) {
+        order = order;
+      } else if (isShuffled === true) {
+        order = Math.floor(Math.random() * list_song.length);
+      } else if (input === true) {
         order++;
         if (order > list_song.length - 1) {
           order = 0;
@@ -154,6 +161,39 @@ Promise.all(fetchPromises)
     backButton.addEventListener("click", function () {
       isNext = false;
       changeSong(isNext);
+    });
+
+    //Shuffle button
+    let isClickedShuffel = false;
+    let isShuffled = false;
+    shuffleButton.addEventListener("click", function () {
+      console.log(document.getElementById("random-btn"));
+      if (!isClickedShuffel) {
+        shuffleButton.style.color = "green";
+        // document.getElementById("random-btn::after").style.display = "inline";
+        isClickedShuffel = true;
+        isShuffled = true;
+      } else {
+        shuffleButton.style.color = " rgba(0, 0, 0, 0.63)";
+        // document.getElementById("random-btn::after").style.display = "none";
+        isClickedShuffel = false;
+        isShuffled = false;
+      }
+    });
+
+    //Repeat Button
+    let isClickedRepeat = false;
+    let isRepeated = false;
+    repeatButton.addEventListener("click", function () {
+      if (!isClickedRepeat) {
+        repeatButton.style.color = "green";
+        isClickedRepeat = true;
+        isRepeated = true;
+      } else {
+        repeatButton.style.color = " rgba(0, 0, 0, 0.63)";
+        isClickedRepeat = false;
+        isRepeated = false;
+      }
     });
 
     // for (let k = 0; k < clickSong.length; k++) {
@@ -200,17 +240,33 @@ Promise.all(fetchPromises)
 
       // Đặt văn bản của span bằng tên bài hát
       span.textContent = song.title;
-      spanTime.textContent = song.duration;
+      const audio = new Audio(`${song.src}`);
+      audio.addEventListener("loadedmetadata", function () {
+        spanTime.textContent = formatTime(audio.duration);
+      });
       //Thêm ID bằng index bài
       div.id = `songitem-${index}`;
       span.id = `song-${index}`;
-      span.id = `songTime-${index}`;
+      spanTime.id = `songTime-${index}`;
       div.classList.add("song-item");
+      spanTime.classList.add("song-duration");
       // Thêm span vào thẻ div
-      div.appendChild(spanTime);
       div.appendChild(span);
+      div.appendChild(spanTime);
       playlist.appendChild(div);
     });
+
+    //make a sound wave
+    // document.addEventListener("DOMContentLoaded", function () {
+    //   const wavesurfer = WaveSurfer.create({
+    //     container: "#waveform",
+    //     waveColor: "#4F4A85",
+    //     progressColor: "#383351",
+    //     barWidth: 4,
+    //     height: 90,
+    //     responsive,
+    //   });
+    // });
   })
   .catch((error) => {
     console.log("Lỗi khi lấy và xử lý dữ liệu: " + error);
